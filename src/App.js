@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "react-apollo";
+import Data from "./components/Data";
+import Polling from "./components/Polling";
+import Refetch from "./components/Refetch";
+import Mutation from "./components/Mutation";
 
+const localGraphQL = "http://localhost:4000/graphql";
+
+const client = new ApolloClient({
+  uri: localGraphQL
+});
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <ApolloProvider client={client}>
+        <div>
+          <h2>My Apollo app </h2>
+          {/* <Data /> */}
+          {/* <Polling /> */}
+          <Refetch />
+          <Mutation/>
+        </div>
+     </ApolloProvider>
     );
   }
 }
-
 export default App;
