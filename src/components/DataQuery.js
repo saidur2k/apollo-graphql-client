@@ -12,7 +12,7 @@ const getData = gql`
   }
 `;
 
-const Data = () => (
+const DataQuery = () => (
   <Query query={getData}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading…</p>;
@@ -30,4 +30,4 @@ const Data = () => (
     }}
   </Query>
 );
-export default Data;
+export default DataQuery;
