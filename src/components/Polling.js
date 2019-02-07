@@ -26,11 +26,11 @@ const Polling = () => (
       return (
         <div>
           <h1>Polling</h1>
-          { data.products.map(p => (
-            <div>{JSON.stringify(p)}</div>
-          ))}
           <button onClick={() => startPolling(POLL_INTERVAL)}>Start polling</button>
           <button onClick={() => stopPolling()}>Stop polling</button>
+          { data.products.map(p => (
+            <div key={p.id}>{JSON.stringify(p)}</div>
+          ))}
         </div>
       );
     }}

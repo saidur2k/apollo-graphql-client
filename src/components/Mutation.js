@@ -17,6 +17,7 @@ const DataInput = () => {
     <Mutation mutation={CREATE_PRODUCT}>
       {(createProduct, { data, loading, error }) => (
         <div>
+          <h4>Create a new product</h4>
           <form
             onSubmit={e => {
               e.preventDefault();
@@ -32,21 +33,24 @@ const DataInput = () => {
               descriptionInput.value = "";
             }}
           >
-            <input
+            <label htmlFor="productName">Product Name</label>
+            <input name="productName"
               ref={node => {
                 nameInput = node;
               }}
             />
-
-            <input name
+            <br/>
+            <label htmlFor="productDescription">Product Description</label>
+            <input name="productDescription"
               ref={node => {
                 descriptionInput = node;
               }}
             />
+            <br/>
             <button type="submit">Create Product</button>
 
             {loading && <div>adding product</div>}
-            {data && <div>response data {JSON.stringify(data)} </div> }
+            {data && <div>Created a new product {JSON.stringify(data)} </div> }
             {error && <div>Error adding product</div>}
           </form>
         </div>

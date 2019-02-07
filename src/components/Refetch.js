@@ -21,8 +21,8 @@ const Refetch = () => (
         <div>
             <h1>Refetch</h1>
             <button onClick={() => refetch()}>Fetch</button>
-            { data.products.map((p, i) => (
-            <div key={i}>{JSON.stringify(p)}</div>
+            { data.products.map(p => (
+            <div key={p.id}>{JSON.stringify(p)}</div>
           ))}
         </div>
       );

@@ -12,6 +12,7 @@ import { SubscriptionClient } from 'subscriptions-transport-ws'
 import { createHttpLink } from 'apollo-link-http'
 import { WebSocketLink } from 'apollo-link-ws'
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const localHTTPGraphQL = "http://localhost:4000/graphql";
 const localWSGraphQL = "ws://localhost:4000/graphql";
@@ -39,27 +40,44 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 
+const Index = () => <h2>Welcome</h2>;
+
 class App extends Component {
   render() {
     return (
       <ApolloProvider client={client}>
-        <div>
-          <h2>Simple Apollo app </h2>
-          <hr/>
-          <h3>DataQuery</h3>
-          <DataQuery />
-          <hr/>
-          <h3>Refetch</h3>
-          <Refetch />
-          <hr />
-          <h3>Subscription</h3>
-          <Subscription />
-          <hr />
-          <h3>Polling</h3>
-          <Polling />
-          <h3>Mutation</h3>
-          <Mutation/>
-        </div>
+        <Router>
+          <div>
+            <h2>Simple Apollo app </h2>
+            <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/query/">DataQuery</Link>
+              </li>
+              <li>
+                <Link to="/refetch/">Refetch</Link>
+              </li>
+              <li>
+                <Link to="/polling/">Polling</Link>
+              </li>
+              <li>
+                <Link to="/subscription/">Subscription</Link>
+              </li>
+            </ul>
+            </nav>
+            <hr />
+            <Route path="/" exact component={Index} />
+            <Route path="/query/" component={DataQuery} />
+            <Route path="/subscription/" component={Subscription} />
+            <Route path="/polling/" component={Polling} />
+            <Route path="/refetch/" component={Refetch} />
+            <hr />
+            <Mutation />
+          </div>
+        </Router>
      </ApolloProvider>
     );
   }

@@ -14,7 +14,10 @@ const CREATE_PRODUCT_SUBSCRIPTION = gql`
 const Refetch = () => (
   <Subscription subscription={CREATE_PRODUCT_SUBSCRIPTION}>
     {({ data, productCreated, loading }) => (
-      <h4>New product: {!loading && JSON.stringify(data, productCreated)}</h4>
+      <div>
+        <h1>Subscription</h1>
+        {!loading && <h4>New product: <div key={data.productCreated.id}>{JSON.stringify(data.productCreated)}</div></h4>}
+      </div>
     )}
   </Subscription>
 );

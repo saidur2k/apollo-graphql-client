@@ -20,10 +20,8 @@ const DataQuery = () => (
       return (
         <div>
           <h1>Data</h1>
-          {data.products.map(({ id, name, description }) => (
-            <div key={id}>
-              <p>{`${name}: ${description}`}</p>
-            </div>
+          { data.products.map(p => (
+            <div key={p.id}>{JSON.stringify(p)}</div>
           ))}
         </div>
       );
